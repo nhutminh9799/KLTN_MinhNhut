@@ -188,7 +188,7 @@ class Agent:
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     df = init_data()
-    name = 'Q-Learning-Model'
+    name = 'Q-Learning-Model-BTC'
     close = df.Close.values.tolist()
     initial_money = 10000
     window_size = 10

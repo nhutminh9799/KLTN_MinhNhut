@@ -18,13 +18,14 @@ from sklearn.preprocessing import MinMaxScaler
 
 #2. Function import Data
 def init_data():
-    df = pd.read_csv('ProjectARIMA_LSTM\\BTC_CSV5.csv')
-    df.pop('Currency')
-    df.pop('24h Open (USD)')
-    df.pop('24h High (USD)')
-    df.pop('24h Low (USD)')
-    df.pop('Closing Price (USD)')
-    return df
+    df = pd.read_csv('BTC.csv')
+    df.pop('predict_arima')
+    df.pop('predict_lstm')
+    df.pop('predict_hybrid_arima_lstm')
+    df.pop('id')
+    df['closingPrice'] = df['closing_price']/10000
+    df.pop('closing_price')
+    return df.tail(500)
 #3 Hàm arima
 def arimamodel(timeseriesarray):
     autoarima_model = pmd.auto_arima(timeseriesarray,
@@ -47,20 +48,20 @@ def create_dataset(dataset, look_back=1):
 #6. Hàm main
 if __name__ == '__main__':
     df = init_data()
-    df['Date'] = pd.to_datetime(df['Date'])
-    df.set_index("Date", inplace=True)
+    df['datetime_btc'] = pd.to_datetime(df['datetime_btc'])
+    df.set_index("datetime_btc", inplace=True)
     train, test = df[df.index < '2021-01-01'], df[df.index >= '2021-01-01']
     diff_1 = train.diff().dropna()
     arima_model = arimamodel(train)
     arima_model.summary()
     test['ARIMA'] = arima_model.predict(len(test))
-    test['Error'] = test['Closing_Price'] - test['ARIMA']
-    test['Date'] = test.index
+    test['Error'] = test['closingPrice'] - test['ARIMA']
+    test['datetime_btc'] = test.index
     error = test[['Error']]
     plt.figure(figsize=(15, 9))
     plt.plot(error)
     plt.title("Error", fontsize=18, fontweight='bold')
-    plt.xlabel('Date', fontsize=18)
+    plt.xlabel('datetime_btc', fontsize=18)
     plt.ylabel('Price', fontsize=18)
     error = np.array(error)
     look_back = 3
@@ -91,8 +92,9 @@ if __name__ == '__main__':
     y_forecast = model.predict(dataX)
     y_forecast = y_forecast.reshape(1, )
     y_arima = test.copy()
-    y_arima = y_arima.tail(4).head(1)
+    y_arima = y_arima.tail(4)
     y_arima['Final_LSTM'] = y_arima.ARIMA + y_forecast
     LSTM_model.to_csv("LSTM_Model.csv")
     y_arima.to_csv("DuBao.csv")
     print(y_arima)
+
