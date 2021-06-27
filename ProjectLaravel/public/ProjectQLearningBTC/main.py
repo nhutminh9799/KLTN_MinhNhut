@@ -17,10 +17,11 @@ tf.compat.v1.disable_eager_execution()
 
 #2. Function import Data
 def init_data():
-    df_full = pd.read_csv('ProjectQLearning\\BTC.csv')
-    df_full.pop('Currency')
+    df_full = pd.read_csv('BTC.csv')
     df = df_full.copy()
-    return df
+    df['Close']=df['closing_price']/10000
+    df.pop('closing_price')
+    return df.tail(100)
 
 #3. Class Agent
 class Agent:
