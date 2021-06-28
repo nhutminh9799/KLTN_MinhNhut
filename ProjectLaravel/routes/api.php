@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ModelController;
+use App\Http\Controllers\BitcoinController;
+use App\Http\Controllers\EthereumController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,4 +23,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/getValue',[ModelController::class, 'getModel']);
 
+//API BTC
+Route::get('/getAllBTC',[BitcoinController::class,'getAll']);
+Route::get('/getQLearningBTC',[BitcoinController::class,'getQLearningGraph']);
+Route::get('/getPredictPriceBTC',[BitcoinController::class,'getPredictPrice']);
+Route::get('/getNewDataBTC',[BitcoinController::class,'getNewData']);
+Route::get('/getDataBTC',[BitcoinController::class,'getData']);
+
+//API ETH
+Route::get('/getAllETH',[EthereumController::class,'getAll']);
+Route::get('/getQLearningETH',[EthereumController::class,'getQLearningGraph']);
+Route::get('/getPredictPriceETH',[EthereumController::class,'getPredictPrice']);
+Route::get('/getNewDataETH',[EthereumController::class,'getNewData']);
+Route::get('/getDataETH',[BitcoinController::class,'getData']);
 

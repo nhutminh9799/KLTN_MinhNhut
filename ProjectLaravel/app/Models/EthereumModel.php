@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class EthereumModel extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'ethereum';
+    public $timestamps = false;
 }

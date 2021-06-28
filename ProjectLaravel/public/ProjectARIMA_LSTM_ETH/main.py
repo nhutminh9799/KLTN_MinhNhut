@@ -18,7 +18,7 @@ from sklearn.preprocessing import MinMaxScaler
 
 #2. Function import Data
 def init_data():
-    df = pd.read_csv('BTC.csv')
+    df = pd.read_csv('ETH.csv')
     df.pop('predict_arima')
     df.pop('predict_lstm')
     df.pop('predict_hybrid_arima_lstm')
@@ -48,20 +48,20 @@ def create_dataset(dataset, look_back=1):
 #6. Hàm main
 if __name__ == '__main__':
     df = init_data()
-    df['datetime_btc'] = pd.to_datetime(df['datetime_btc'])
-    df.set_index("datetime_btc", inplace=True)
+    df['datetime_eth'] = pd.to_datetime(df['datetime_eth'])
+    df.set_index("datetime_eth", inplace=True)
     train, test = df[df.index < '2021-01-01'], df[df.index >= '2021-01-01']
     diff_1 = train.diff().dropna()
     arima_model = arimamodel(train)
     arima_model.summary()
     test['ARIMA'] = arima_model.predict(len(test))
     test['Error'] = test['closingPrice'] - test['ARIMA']
-    test['datetime_btc'] = test.index
+    test['datetime_eth'] = test.index
     error = test[['Error']]
     plt.figure(figsize=(15, 9))
     plt.plot(error)
     plt.title("Error", fontsize=18, fontweight='bold')
-    plt.xlabel('datetime_btc', fontsize=18)
+    plt.xlabel('datetime_eth', fontsize=18)
     plt.ylabel('Price', fontsize=18)
     error = np.array(error)
     look_back = 3
@@ -95,6 +95,6 @@ if __name__ == '__main__':
     y_arima = y_arima.tail(4)
     y_arima['Final_LSTM'] = y_arima.ARIMA + y_forecast
     LSTM_model.to_csv("LSTM_Model.csv")
-    y_arima.to_csv("DuBao.csv")
+    y_arima.to_csv("DuBaoETH.csv")
     print(y_arima)
 

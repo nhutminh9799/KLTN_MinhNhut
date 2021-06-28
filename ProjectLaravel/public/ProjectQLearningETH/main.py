@@ -17,7 +17,7 @@ tf.compat.v1.disable_eager_execution()
 
 #2. Function import Data
 def init_data():
-    df_full = pd.read_csv('BTC.csv')
+    df_full = pd.read_csv('ETH.csv')
     df = df_full.copy()
     df['Close']=df['closing_price']/10000
     df.pop('closing_price')
@@ -188,7 +188,7 @@ class Agent:
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     df = init_data()
-    name = 'Q-Learning-Model-BTC'
+    name = 'Q-Learning-Model-ETH'
     close = df.Close.values.tolist()
     initial_money = 10000
     window_size = 10

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\BitcoinModel;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\DB;
 
 class BitcoinController extends Controller
 {
@@ -36,8 +39,9 @@ class BitcoinController extends Controller
         fclose($fp);
     }
 
-    public function getQLearningGraph()
+    public static function getQLearningGraph()
     {
+
         ini_set('max_execution_time', 300);
         $output = shell_exec("python ProjectQLearningBTC\\main.py 2>&1");
     }
@@ -70,6 +74,24 @@ class BitcoinController extends Controller
     }
 
     public function getData(){
-        return BitcoinModel::orderBy('id', 'desc')->take(10)->get();
+        return BitcoinModel::orderBy('id', 'desc')->take(100)->get();
+    }
+
+    public function getNewData(){
+        //Session get date current
+        $dt = Carbon::now();
+        $dt = $dt->toDateString();
+        DB::table('ethereum')->insert([
+            'datetime_eth' => $dt
+        ]);
+        //Session Update closing price previous day
+        $dateNow = date('Y-m-d', strtotime(' -1 day'));
+        $client = new Client();
+        $res = $client->get('https://api.coindesk.com/v1/bpi/historical/close.json?start='.$dateNow.'&end='.$dateNow);
+        $a = $res->getBody()->getContents();
+        $a = json_decode($a);
+        $real_price = $a->bpi->$dateNow;
+        BitcoinModel::where('datetime_btc', $dateNow)
+            ->update(['closing_price' => $real_price]);
     }
 }
