@@ -17,7 +17,7 @@ tf.compat.v1.disable_eager_execution()
 
 #2. Function import Data
 def init_data():
-    df_full = pd.read_csv('ETH.csv')
+    df_full = pd.read_csv('../ETH.csv')
     df = df_full.copy()
     df['Close']=df['closing_price']/10000
     df.pop('closing_price')
