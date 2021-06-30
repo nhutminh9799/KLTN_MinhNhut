@@ -36,4 +36,3 @@ Route::get('/getQLearningETH',[EthereumController::class,'getQLearningGraph']);
 Route::get('/getPredictPriceETH',[EthereumController::class,'getPredictPrice']);
 Route::get('/getNewDataETH',[EthereumController::class,'getNewData']);
 Route::get('/getDataETH',[BitcoinController::class,'getData']);
-
