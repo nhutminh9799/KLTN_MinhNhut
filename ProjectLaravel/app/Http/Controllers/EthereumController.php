@@ -43,10 +43,13 @@ class EthereumController extends Controller
         fclose($fp);
     }
 
+    /**
+     * Get QLearning Graph ETH
+     */
     public static function getQLearningGraph()
     {
         ini_set('max_execution_time', 300);
-        $output = shell_exec("python ProjectQLearningETH\\main.py 2>&1");
+        $output = shell_exec("python3 ProjectQLearningETH/main.py 2>&1");
     }
 
     public function getPredictPrice()

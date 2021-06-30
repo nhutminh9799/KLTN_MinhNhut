@@ -1,7 +1,4 @@
 #1. Import Library
-import sys
-import site
-site.addsitedir('/usr/local/lib/python3.6/dist-packages/')
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
