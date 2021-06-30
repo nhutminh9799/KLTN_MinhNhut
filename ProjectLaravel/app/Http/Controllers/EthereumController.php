@@ -86,12 +86,13 @@ class EthereumController extends Controller
      * @return mixed
      */
     public function getData(){
-        return EthereumModel::orderBy('id', 'desc')->take(100)->get();
+        return EthereumModel::orderBy('id', 'desc')->take(50)->get();
     }
 
     public function getNewData(){
         //Session get date current
         $dt = Carbon::now();
+        dd($dt);
         $dt = $dt->toDateString();
         DB::table('ethereum')->insert([
             'datetime_eth' => $dt

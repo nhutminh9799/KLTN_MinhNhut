@@ -84,7 +84,7 @@ class BitcoinController extends Controller
      * @return mixed
      */
     public function getData(){
-        return BitcoinModel::orderBy('id', 'desc')->take(100)->get();
+        return BitcoinModel::orderBy('id', 'desc')->take(50)->get();
     }
 
     public function getNewData(){
