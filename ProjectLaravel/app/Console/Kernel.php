@@ -24,6 +24,21 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        //fucntion predicted price
+        $schedule->call(function () {
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, "http://112.78.4.49/api/getAllETH");
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_exec($ch);
+            curl_close($ch);
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, "http://112.78.4.49/api/getAllBTC");
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_exec($ch);
+            curl_close($ch);
+        })->everyFiveMinutes();
+
         // $schedule->command('inspire')->hourly();
         //function cron new data
         $schedule->call(function () {
