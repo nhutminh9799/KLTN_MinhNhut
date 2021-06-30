@@ -73,7 +73,6 @@ class EthereumController extends Controller
     }
 
     public function getData(){
-        dd("hello");
         return EthereumModel::orderBy('id', 'desc')->take(100)->get();
     }
 
