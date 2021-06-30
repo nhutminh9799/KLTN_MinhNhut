@@ -91,8 +91,8 @@ class BitcoinController extends Controller
         //Session get date current
         $dt = Carbon::now();
         $dt = $dt->toDateString();
-        DB::table('ethereum')->insert([
-            'datetime_eth' => $dt
+        DB::table('bitcoin')->insert([
+            'datetime_btc' => $dt
         ]);
         //Session Update closing price previous day
         $dateNow = date('Y-m-d', strtotime(' -1 day'));
