@@ -10,9 +10,9 @@ import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
 
-from keras.models import Sequential
-from keras.layers import Dense
-from keras.layers import LSTM
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.layers import LSTM
 
 from sklearn.preprocessing import MinMaxScaler
 

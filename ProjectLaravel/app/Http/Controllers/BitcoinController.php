@@ -55,7 +55,6 @@ class BitcoinController extends Controller
     {
         ini_set('max_execution_time', 300);
         $output = shell_exec("python3 ProjectARIMA_LSTM_BTC/main.py 2>&1");
-        dd($output);
         if (!($fp = fopen('DuBao.csv', 'r'))) {
             die("Can't open file...");
         }
