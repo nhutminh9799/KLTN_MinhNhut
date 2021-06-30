@@ -56,7 +56,7 @@ class EthereumController extends Controller
     public function getPredictPrice()
     {
         ini_set('max_execution_time', 300);
-        $output = shell_exec("python ProjectARIMA_LSTM_ETH\\main.py 2>&1");
+        $output = shell_exec("python3 ProjectARIMA_LSTM_ETH/main.py 2>&1");
         if (!($fp = fopen('DuBaoETH.csv', 'r'))) {
             die("Can't open file...");
         }

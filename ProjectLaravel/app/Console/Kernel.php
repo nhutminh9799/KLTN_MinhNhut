@@ -24,32 +24,32 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        //fucntion predicted price
-        $schedule->call(function () {
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "http://112.78.4.49/api/getAllETH");
-            curl_setopt($ch, CURLOPT_HEADER, 0);
-            curl_exec($ch);
-            curl_close($ch);
-
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "http://112.78.4.49/api/getAllBTC");
-            curl_setopt($ch, CURLOPT_HEADER, 0);
-            curl_exec($ch);
-            curl_close($ch);
-        })->everyFiveMinutes();
+//        //fucntion predicted price
+//        $schedule->call(function () {
+//            $ch = curl_init();
+//            curl_setopt($ch, CURLOPT_URL, "http://112.78.4.49/api/getAllETH");
+//            curl_setopt($ch, CURLOPT_HEADER, 0);
+//            curl_exec($ch);
+//            curl_close($ch);
+//
+//            $ch = curl_init();
+//            curl_setopt($ch, CURLOPT_URL, "http://112.78.4.49/api/getAllBTC");
+//            curl_setopt($ch, CURLOPT_HEADER, 0);
+//            curl_exec($ch);
+//            curl_close($ch);
+//        })->everyFiveMinutes();
 
         // $schedule->command('inspire')->hourly();
         //function cron new data
         $schedule->call(function () {
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "http://127.0.0.1:8000/api/getNewDataBTC");
+            curl_setopt($ch, CURLOPT_URL, "http://112.78.4.49/api/getNewDataBTC");
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_exec($ch);
             curl_close($ch);
 
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "http://127.0.0.1:8000/api/getNewDataETH");
+            curl_setopt($ch, CURLOPT_URL, "http://112.78.4.49/api/getNewDataETH");
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_exec($ch);
             curl_close($ch);
@@ -58,13 +58,13 @@ class Kernel extends ConsoleKernel
         //function export data to csv
         $schedule->call(function () {
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "http://127.0.0.1:8000/api/getAllBTC");
+            curl_setopt($ch, CURLOPT_URL, "http://112.78.4.49/api/getAllETH");
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_exec($ch);
             curl_close($ch);
 
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "http://127.0.0.1:8000/api/getAllETH");
+            curl_setopt($ch, CURLOPT_URL, "http://112.78.4.49/api/getAllETH");
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_exec($ch);
             curl_close($ch);
@@ -73,13 +73,13 @@ class Kernel extends ConsoleKernel
         //function Q-Learning
         $schedule->call(function () {
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "http://127.0.0.1:8000/api/getQLearningBTC");
+            curl_setopt($ch, CURLOPT_URL, "http://112.78.4.49/api/getQLearningBTC");
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_exec($ch);
             curl_close($ch);
 
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "http://127.0.0.1:8000/api/getQLearningETH");
+            curl_setopt($ch, CURLOPT_URL, "http://112.78.4.49/api/getQLearningETH");
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_exec($ch);
             curl_close($ch);
@@ -88,17 +88,48 @@ class Kernel extends ConsoleKernel
         //fucntion predicted price
         $schedule->call(function () {
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "http://127.0.0.1:8000/api/getPredictPriceBTC");
+            curl_setopt($ch, CURLOPT_URL, "http://112.78.4.49/api/getPredictPriceBTC");
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_exec($ch);
             curl_close($ch);
 
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "http://127.0.0.1:8000/api/getPredictPriceETH");
+            curl_setopt($ch, CURLOPT_URL, "http://112.78.4.49/api/getPredictPriceETH");
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_exec($ch);
             curl_close($ch);
-        })->weeklyOn(2, '3:00');
+        })->weekly()->mondays()->at('3:00');
+
+
+        //fucntion predicted price
+        $schedule->call(function () {
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, "http://112.78.4.49/api/getPredictPriceBTC");
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_exec($ch);
+            curl_close($ch);
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, "http://112.78.4.49/api/getPredictPriceETH");
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_exec($ch);
+            curl_close($ch);
+        })->weekly()->wednesdays()->at('3:00');
+
+        //fucntion predicted price
+        $schedule->call(function () {
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, "http://112.78.4.49/api/getPredictPriceBTC");
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_exec($ch);
+            curl_close($ch);
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, "http://112.78.4.49/api/getPredictPriceETH");
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_exec($ch);
+            curl_close($ch);
+        })->weekly()->fridays()->at('3:00');
     }
 
     /**
