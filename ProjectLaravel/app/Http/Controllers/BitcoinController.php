@@ -21,6 +21,9 @@ class BitcoinController extends Controller
         //
     }
 
+    /**
+     * Get All Data Convert to CSV
+     */
     public function getAll()
     {
         $json = BitcoinModel::all();
@@ -41,7 +44,6 @@ class BitcoinController extends Controller
 
     public static function getQLearningGraph()
     {
-
         ini_set('max_execution_time', 300);
         $output = shell_exec("python ProjectQLearningBTC\\main.py 2>&1");
     }
@@ -73,6 +75,11 @@ class BitcoinController extends Controller
         return json_encode($json);
     }
 
+    /**
+     * Function get 100 data gần nhất
+     *
+     * @return mixed
+     */
     public function getData(){
         return BitcoinModel::orderBy('id', 'desc')->take(100)->get();
     }

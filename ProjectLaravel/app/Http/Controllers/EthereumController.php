@@ -21,6 +21,10 @@ class EthereumController extends Controller
     {
         //
     }
+
+    /**
+     * Get All Data conver to CSV
+     */
     public function getAll()
     {
         $json = EthereumModel::all();
@@ -72,6 +76,11 @@ class EthereumController extends Controller
         return json_encode($json);
     }
 
+    /**
+     * API get 100 Data
+     *
+     * @return mixed
+     */
     public function getData(){
         return EthereumModel::orderBy('id', 'desc')->take(100)->get();
     }
