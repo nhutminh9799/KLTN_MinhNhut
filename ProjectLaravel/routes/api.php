@@ -29,7 +29,7 @@ Route::get('/getQLearningBTC',[BitcoinController::class,'getQLearningGraph']);
 Route::get('/getPredictPriceBTC',[BitcoinController::class,'getPredictPrice']);
 Route::get('/getNewDataBTC',[BitcoinController::class,'getNewData']);
 Route::get('/getDataBTC',[BitcoinController::class,'getData']);
-Route::get('/cloneInfo',[BitcoinController::class,'cloneInfo']);
+Route::get('/cloneInfoBTC',[BitcoinController::class,'cloneInfo']);
 
 //API ETH
 Route::get('/getAllETH',[EthereumController::class,'getAll']);
@@ -37,3 +37,4 @@ Route::get('/getQLearningETH',[EthereumController::class,'getQLearningGraph']);
 Route::get('/getPredictPriceETH',[EthereumController::class,'getPredictPrice']);
 Route::get('/getNewDataETH',[EthereumController::class,'getNewData']);
 Route::get('/getDataETH',[EthereumController::class,'getData']);
+Route::get('/cloneInfoETH',[EthereumController::class,'cloneInfo']);
