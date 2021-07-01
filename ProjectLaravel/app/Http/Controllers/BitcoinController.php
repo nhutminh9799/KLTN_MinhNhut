@@ -117,7 +117,14 @@ class BitcoinController extends Controller
         $real_price = $a->bpi->USD->rate;
 
         $content = file_get_contents('https://www.coindesk.com/price/bitcoin');
-        preg_match('#<span class="price-color down"><span class="percent-value-text">(.*)</span><span class="symbol">%</span></span>#', $content, $match);
+        preg_match('#<div class="percent-change-medium">
+                                <svg class="chevron-arrow price-down" width="22" height="11" viewBox="0 0 22 11">
+                                <path d="M21.7,1L11,11L0.3,1"></path>
+                                </svg>
+                                <span class="price-color down">
+                                <span class="percent-value-text">(.*)</span>
+                                <span class="symbol">%</span>
+                                </span></div>#', $content, $match);
         $gross = $match[1];
         $info = new \stdClass();
 //        dd($real_price);
