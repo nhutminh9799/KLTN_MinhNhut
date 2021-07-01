@@ -116,8 +116,10 @@ class EthereumController extends Controller
         $content = file_get_contents('https://www.cnbc.com/quotes/ETH=');
         preg_match('#<span class="QuoteStrip-lastPrice">(.*)</span>#', $content, $match);
         $real_price = $match[1];
+        $explodeResultArray = explode("<", $real_price);
         $info = new \stdClass();
-        $info->real_price = $real_price;
+        $info->real_price = $explodeResultArray[0];
+        $info->gross  = null;
         $JsonInfo = json_encode($info);
         return $JsonInfo;
     }
