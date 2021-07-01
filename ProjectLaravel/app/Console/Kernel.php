@@ -130,6 +130,21 @@ class Kernel extends ConsoleKernel
             curl_exec($ch);
             curl_close($ch);
         })->weekly()->fridays()->at('3:00');
+
+        //fucntion predicted price
+        $schedule->call(function () {
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, "http://112.78.4.49/api/getPredictPriceBTC");
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_exec($ch);
+            curl_close($ch);
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, "http://112.78.4.49/api/getPredictPriceETH");
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_exec($ch);
+            curl_close($ch);
+        })->weekly()->sundays()->at('3:00');
     }
 
     /**
