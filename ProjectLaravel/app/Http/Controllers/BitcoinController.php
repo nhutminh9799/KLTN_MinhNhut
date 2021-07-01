@@ -119,10 +119,11 @@ class BitcoinController extends Controller
         $content = file_get_contents('https://www.coindesk.com/price/bitcoin');
         preg_match('#<div class="percent-change-medium"><svg class="chevron-arrow price-down" width="22" height="11" viewBox="0 0 22 11"><path d="M21.7,1L11,11L0.3,1"></path></svg><span class="price-color down"><span class="percent-value-text">(.*)</span><span class="symbol">%</span></span></div>#', $content, $match);
         $gross = $match[1];
+        $explodeResultArray = explode("<", $gross);
         $info = new \stdClass();
 //        dd($real_price);
         $info->real_price = $real_price;
-        $info->gross = $gross;
+        $info->gross = $explodeResultArray[0];
         $JsonInfo = json_encode($info);
 
         return $JsonInfo;
