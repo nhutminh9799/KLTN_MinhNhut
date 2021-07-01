@@ -77,6 +77,7 @@ class EthereumController extends Controller
             EthereumModel::where('datetime_eth', $row["datetime_eth"])
                 ->update(['predict_hybrid_arima_lstm' => $row["Final_LSTM"]]);
         }
+        $this->getAll();
         return json_encode($json);
     }
 

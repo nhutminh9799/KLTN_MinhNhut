@@ -75,6 +75,7 @@ class BitcoinController extends Controller
             BitcoinModel::where('datetime_btc', $row["datetime_btc"])
                 ->update(['predict_hybrid_arima_lstm' => $row["Final_LSTM"]]);
         }
+        $this->getAll();
         return json_encode($json);
     }
 
@@ -95,7 +96,7 @@ class BitcoinController extends Controller
             'datetime_btc' => $dt
         ]);
         //Session Update closing price previous day
-        $dateNow = date('Y-m-d', strtotime(' -1 day'));
+        $dateNow = date('Y-m-d', strtotime(' -2 day'));
         $client = new Client();
         $res = $client->get('https://api.coindesk.com/v1/bpi/historical/close.json?start='.$dateNow.'&end='.$dateNow);
         $a = $res->getBody()->getContents();
