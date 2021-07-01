@@ -86,7 +86,9 @@ class EthereumController extends Controller
      * @return mixed
      */
     public function getData(){
-        return EthereumModel::orderBy('id', 'desc')->take(50)->get();
+        $eth = EthereumModel::orderBy('id', 'desc')->take(50)->get();
+        $eth_change = \Carbon\Carbon::parse($eth->datetime_eth)->format('d/m/Y');
+        return $eth_change;
     }
 
     public function getNewData(){
