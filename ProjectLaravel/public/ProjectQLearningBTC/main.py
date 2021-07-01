@@ -189,7 +189,8 @@ class Agent:
 if __name__ == '__main__':
     df = init_data()
     name = 'Q-Learning-Model-BTC'
-    close = df.Close.values.tolist()
+    close = df.tail(99).Close.values.tolist()
+    close.append(df.tail(1).predict_hybrid_arima_lstm.values[0])
     initial_money = 10000
     window_size = 10
     skip = 1
@@ -207,7 +208,6 @@ if __name__ == '__main__':
     plt.plot(close, color='r', lw=2.)
     plt.plot(close, '^', markersize=10, color='m', label='buying signal', markevery=states_buy)
     plt.plot(close, 'v', markersize=10, color='k', label='selling signal', markevery=states_sell)
-    plt.title('total gains %f, total investment %f%%' % (total_gains, invest))
     plt.legend()
     plt.savefig(name + '.png')
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
