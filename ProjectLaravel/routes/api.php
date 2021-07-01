@@ -29,6 +29,7 @@ Route::get('/getQLearningBTC',[BitcoinController::class,'getQLearningGraph']);
 Route::get('/getPredictPriceBTC',[BitcoinController::class,'getPredictPrice']);
 Route::get('/getNewDataBTC',[BitcoinController::class,'getNewData']);
 Route::get('/getDataBTC',[BitcoinController::class,'getData']);
+Route::get('/cloneInfo',[BitcoinController::class,'cloneInfo']);
 
 //API ETH
 Route::get('/getAllETH',[EthereumController::class,'getAll']);

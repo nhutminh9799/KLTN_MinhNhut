@@ -104,4 +104,27 @@ class BitcoinController extends Controller
         BitcoinModel::where('datetime_btc', $dateNow)
             ->update(['closing_price' => $real_price]);
     }
+
+    /**
+     * Clone Information
+     *
+     */
+    public function cloneInfo(){
+        $client = new Client();
+        $res = $client->get('https://api.coindesk.com/v1/bpi/currentprice/USD.json');
+        $a = $res->getBody()->getContents();
+        $a = json_decode($a);
+        $real_price = $a->bpi->USD->rate;
+
+        $content = file_get_contents('https://www.coindesk.com/price/bitcoin');
+        preg_match('#<span class="percent-value-text">-1.84</span>#', $content, $match);
+        $gross = $match[1];
+        $info = null;
+        $info->real_price = $real_price;
+        $info->gross = $gross;
+        $JsonInfo = json_decode($info);
+
+        return $JsonInfo;
+
+    }
 }
