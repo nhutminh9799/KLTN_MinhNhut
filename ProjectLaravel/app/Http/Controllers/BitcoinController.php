@@ -85,7 +85,7 @@ class BitcoinController extends Controller
      */
     public function getData(){
         $btc = BitcoinModel::orderBy('id', 'desc')->take(50)->get();
-        $btc_change = \Carbon\Carbon::parse($btc>datetime_btc)->format('d/m/Y');
+        $btc_change = \Carbon\Carbon::parse($btc->datetime_btc)->format('d/m/Y');
         return $btc_change;
     }
 
