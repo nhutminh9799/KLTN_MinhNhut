@@ -123,7 +123,7 @@ class BitcoinController extends Controller
 //        dd($real_price);
         $info->real_price = $real_price;
         $info->gross = $gross;
-        $JsonInfo = json_decode($info);
+        $JsonInfo = json_encode($info);
 
         return $JsonInfo;
 
