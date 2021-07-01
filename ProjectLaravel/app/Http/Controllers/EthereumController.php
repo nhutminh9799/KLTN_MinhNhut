@@ -116,7 +116,7 @@ class EthereumController extends Controller
         $content = file_get_contents('https://www.cnbc.com/quotes/ETH=');
         preg_match('#<span class="QuoteStrip-lastPrice">(.*)</span>#', $content, $match);
         $real_price = $match[1];
-        preg_match('#<span class="QuoteStrip-changeDown"><img class="QuoteStrip-changeIcon" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxOSAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTkuNSAxNkwwLjQwNjczNiAwLjI0OTk5OEwxOC41OTMzIDAuMjVMOS41IDE2WiIgZmlsbD0iI0NFMkIyQiIvPgo8L3N2Zz4K" alt="quote price arrow down"><span>-61.57</span><span> (<!-- -->(.*)<!-- -->)</span></span>#', $content, $match2);
+        preg_match('<span> (<!-- -->(.*)<!-- -->)</span>#', $content, $match2);
         $gross = $match2[1];
         $info = new \stdClass();
         $info->real_price = $real_price;
