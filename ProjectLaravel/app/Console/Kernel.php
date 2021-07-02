@@ -53,7 +53,7 @@ class Kernel extends ConsoleKernel
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_exec($ch);
             curl_close($ch);
-        })->dailyAt('00:30');
+        })->dailyAt('07:30');
 
         //function export data to csv
         $schedule->call(function () {
@@ -68,7 +68,7 @@ class Kernel extends ConsoleKernel
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_exec($ch);
             curl_close($ch);
-        })->dailyAt('00:45');
+        })->dailyAt('07:40');
 
         //function Q-Learning
         $schedule->call(function () {
@@ -78,7 +78,7 @@ class Kernel extends ConsoleKernel
             curl_exec($ch);
             curl_close($ch);
 
-        })->dailyAt('3:00');
+        })->dailyAt('7:55');
         //function Q-Learning
         $schedule->call(function () {
             $ch = curl_init();
@@ -86,7 +86,7 @@ class Kernel extends ConsoleKernel
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_exec($ch);
             curl_close($ch);
-        })->dailyAt('3:20');
+        })->dailyAt('8:15');
 
         //fucntion predicted price
         $schedule->call(function () {
@@ -95,7 +95,7 @@ class Kernel extends ConsoleKernel
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_exec($ch);
             curl_close($ch);
-        })->dailyAt('1:20');
+        })->dailyAt('8:30');
 
         //fucntion predicted price
         $schedule->call(function () {
@@ -105,7 +105,7 @@ class Kernel extends ConsoleKernel
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_exec($ch);
             curl_close($ch);
-        })->dailyAt('1:20');
+        })->dailyAt('8:50');
 
     }
 
