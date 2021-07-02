@@ -131,6 +131,7 @@ if __name__ == '__main__':
         while(done != True):
 
             action = choose_action(state)
+            print(action)
             next_state, reward, theta, done = act(state, action, theta)
 
             total_reward += reward
