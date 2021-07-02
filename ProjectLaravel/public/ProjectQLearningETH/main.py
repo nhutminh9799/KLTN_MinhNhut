@@ -15,7 +15,7 @@ def init_data():
     df = df_full.copy()
     df['Close']=df['closing_price']/10000
     df.pop('closing_price')
-    return df.tail(100)
+    return df
 
 #3. function buy/sell/hold
 #Function Buy
@@ -84,9 +84,10 @@ def act(state, action, theta):
 if __name__ == '__main__':
     df = init_data()
     name = 'Q-Learning-Model-ETH'
-    prices = pd.DataFrame(df.copy().Close.values)
-    prices = prices.head(99)
-    prices = prices.append({0:df.tail(1).predict_hybrid_arima_lstm.values[0]}, ignore_index = True)
+    prices = df['Close'].head(100)
+#     prices = pd.DataFrame(df.copy().Close.values)
+#     prices = prices.head(99)
+#     prices = prices.append({0:df.tail(1).predict_hybrid_arima_lstm.values[0]}, ignore_index = True)
 #     #Create Action
 
     np.random.seed(1)
@@ -144,37 +145,36 @@ if __name__ == '__main__':
             q_table[state][action] = q_table[state][action] + alpha * (reward + gamma *  np.max(q_table[next_state]) - q_table[state][action])
 
             state = next_state
+    #Test
+    state = 0
+    acts = np.zeros(nr_states)
+    done = False
 
-#     #Test
-#     state = 0
-#     acts = np.zeros(nr_states)
-#     done = False
-#
-#     while(done != True):
-#
-#             action = choose_action(state)
-#             next_state, reward, theta, done = act(state, action, theta)
-#
-#             acts[state] = action
-#
-#             total_reward += reward
-#
-#             if(done):
-#                 break
-#
-#             state = next_state
-#
-#     #Define Index
-#     buys_idx = np.where(acts == 0)
-#     wait_idx = np.where(acts == 2)
-#     sell_idx = np.where(acts == 1)
-#
-#     #Convert Result
-#     plt.figure(figsize=(30,15))
-#     plt.plot(df.datetime_eth,prices)
-#     plt.xticks(rotation=60)
-#     plt.plot(prices[buys_idx[0]], '^', markersize=10)
-#     plt.plot(prices[sell_idx[0]], 'v', markersize=10)
-#     plt.plot(prices[wait_idx[0]], 'yo', markersize=10)
-#     plt.savefig(name + '.png')
+    while(done != True):
+
+            action = choose_action(state)
+            next_state, reward, theta, done = act(state, action, theta)
+
+            acts[state] = action
+
+            total_reward += reward
+
+            if(done):
+                break
+
+            state = next_state
+
+    #Define Index
+    buys_idx = np.where(acts == 0)
+    wait_idx = np.where(acts == 2)
+    sell_idx = np.where(acts == 1)
+
+    #Convert Result
+    plt.figure(figsize=(30,15))
+    plt.plot(df.datetime_eth,prices)
+    plt.xticks(rotation=60)
+    plt.plot(prices[buys_idx[0]], '^', markersize=10)
+    plt.plot(prices[sell_idx[0]], 'v', markersize=10)
+    plt.plot(prices[wait_idx[0]], 'yo', markersize=10)
+    plt.savefig(name + '.png')
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
