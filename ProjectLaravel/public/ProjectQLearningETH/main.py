@@ -87,7 +87,7 @@ if __name__ == '__main__':
     prices = pd.DataFrame(df.copy().Close.values)
     prices = prices.head(99)
     prices = prices.append({0:df.tail(1).predict_hybrid_arima_lstm.values[0]}, ignore_index = True)
-    prices = prices.0
+    prices = prices[0]
     print(prices)
 #     #Create Action
 
