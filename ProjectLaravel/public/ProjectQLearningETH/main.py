@@ -99,26 +99,26 @@ if __name__ == '__main__':
     # q-table = reference table for our agent to select the best action based on the q-value
     q_table = np.random.rand(nr_states, nr_actions)
 
-#     #Init Agent
-#     reward = 0
-#     btc = 0
-#     money = 100
-#
-#     theta = btc, money
-#     # exploratory
-#     eps = 0.3
-#
-#     n_episodes = 20
-#     min_alpha = 0.02
-#
-#     # learning rate for Q learning
-#     alphas = np.linspace(1.0, min_alpha, n_episodes)
-#
-#     # discount factor, used to balance immediate and future reward
-#     gamma = 1.0
-#
-#     rewards = {}
-#
+    #Init Agent
+    reward = 0
+    btc = 0
+    money = 100
+
+    theta = btc, money
+    # exploratory
+    eps = 0.3
+
+    n_episodes = 20
+    min_alpha = 0.02
+
+    # learning rate for Q learning
+    alphas = np.linspace(1.0, min_alpha, n_episodes)
+
+    # discount factor, used to balance immediate and future reward
+    gamma = 1.0
+
+    rewards = {}
+
 #     #Training
 #     for e in range(n_episodes):
 #
