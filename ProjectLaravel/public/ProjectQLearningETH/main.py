@@ -166,12 +166,12 @@ if __name__ == '__main__':
     wait_idx = np.where(acts == 2)
     sell_idx = np.where(acts == 1)
 
-#     #Convert Result
-#     plt.figure(figsize=(30,15))
-#     plt.plot(df_full.datetime_eth,prices)
-#     plt.xticks(rotation=60)
-#     plt.plot(prices[buys_idx[0]], '^', markersize=10)
-#     plt.plot(prices[sell_idx[0]], 'v', markersize=10)
-#     plt.plot(prices[wait_idx[0]], 'yo', markersize=10)
-#     plt.savefig(name + '.png')
+    #Convert Result
+    plt.figure(figsize=(30,15))
+    plt.plot(df_full.datetime_eth,prices)
+    plt.xticks(rotation=60)
+    plt.plot(prices[buys_idx[0]], '^', markersize=10)
+    plt.plot(prices[sell_idx[0]], 'v', markersize=10)
+    plt.plot(prices[wait_idx[0]], 'yo', markersize=10)
+    plt.savefig(name + '.png')
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
