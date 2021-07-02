@@ -86,7 +86,7 @@ if __name__ == '__main__':
     name = 'Q-Learning-Model-ETH'
     prices = pd.DataFrame(df.copy().Close.values)
     prices = prices.head(99)
-    prices = prices.append({'0':df.tail(1).predict_hybrid_arima_lstm.values}, ignore_index = True)
+    prices = prices.append({0:df.tail(1).predict_hybrid_arima_lstm.values[0]}, ignore_index = True)
     print(prices)
 #     #Create Action
 #
