@@ -119,31 +119,31 @@ if __name__ == '__main__':
 
     rewards = {}
 
-#     #Training
-#     for e in range(n_episodes):
-#
-#         total_reward = 0
-#
-#         state = 0
-#         done = False
-#         alpha = alphas[e]
-#
-#         while(done != True):
-#
-#             action = choose_action(state)
-#             next_state, reward, theta, done = act(state, action, theta)
-#
-#             total_reward += reward
-#
-#             if(done):
-#                 rewards[e] = total_reward
-#                 print(f"Episode {e + 1}: total reward -> {total_reward}")
-#                 break
-#
-#             q_table[state][action] = q_table[state][action] + alpha * (reward + gamma *  np.max(q_table[next_state]) - q_table[state][action])
-#
-#             state = next_state
-#
+    #Training
+    for e in range(n_episodes):
+
+        total_reward = 0
+
+        state = 0
+        done = False
+        alpha = alphas[e]
+
+        while(done != True):
+
+            action = choose_action(state)
+            next_state, reward, theta, done = act(state, action, theta)
+
+            total_reward += reward
+
+            if(done):
+                rewards[e] = total_reward
+                print(f"Episode {e + 1}: total reward -> {total_reward}")
+                break
+
+            q_table[state][action] = q_table[state][action] + alpha * (reward + gamma *  np.max(q_table[next_state]) - q_table[state][action])
+
+            state = next_state
+
 #     #Test
 #     state = 0
 #     acts = np.zeros(nr_states)
