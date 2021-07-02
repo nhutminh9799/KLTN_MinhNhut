@@ -49,6 +49,7 @@ class BitcoinController extends Controller
     {
         ini_set('max_execution_time', 300);
         $output = shell_exec("python3 ProjectQLearningBTC/main.py 2>&1");
+        dd($output);
     }
 
     public function getPredictPrice()
