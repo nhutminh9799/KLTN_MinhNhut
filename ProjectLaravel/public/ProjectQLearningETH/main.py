@@ -1,6 +1,7 @@
 #Library Project QLearning.
 #Author: Nguyen Minh Nhut
 #1. Library
+import  matplotlib
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
