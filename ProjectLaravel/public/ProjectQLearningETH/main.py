@@ -84,7 +84,8 @@ def act(state, action, theta):
 if __name__ == '__main__':
     df = init_data()
     name = 'Q-Learning-Model-ETH'
-    prices = pd.DataFrame(df.tail(98).copy().Close.values)
+    prices = pd.DataFrame(df.copy().Close.values)
+    prices = prices.head(99)
     print(prices)
 #     #Create Action
 #
