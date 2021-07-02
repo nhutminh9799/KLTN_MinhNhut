@@ -89,92 +89,92 @@ if __name__ == '__main__':
     prices = prices.append({0:df.tail(1).predict_hybrid_arima_lstm.values[0]}, ignore_index = True)
     print(prices)
 #     #Create Action
-#
-#     np.random.seed(1)
-#     # set of actions that the user could do
-#     actions = { 'buy' : buy, 'sell': sell, 'wait' : wait}
-#     actions_to_nr = { 'buy' : 0, 'sell' : 1, 'wait' : 2 }
-#     nr_to_actions = { k:v for (k,v) in enumerate(actions_to_nr) }
-#     nr_actions = len(actions_to_nr.keys())
-#     nr_states = len(prices)
-#     # q-table = reference table for our agent to select the best action based on the q-value
-#     q_table = np.random.rand(nr_states, nr_actions)
-#
-#     #Init Agent
-#     reward = 0
-#     btc = 0
-#     money = 100
-#
-#     theta = btc, money
-#     # exploratory
-#     eps = 0.3
-#
-#     n_episodes = 20
-#     min_alpha = 0.02
-#
-#     # learning rate for Q learning
-#     alphas = np.linspace(1.0, min_alpha, n_episodes)
-#
-#     # discount factor, used to balance immediate and future reward
-#     gamma = 1.0
-#
-#     rewards = {}
-#
-#     #Training
-#     for e in range(n_episodes):
-#
-#         total_reward = 0
-#
-#         state = 0
-#         done = False
-#         alpha = alphas[e]
-#
-#         while(done != True):
-#
-#             action = choose_action(state)
-#             next_state, reward, theta, done = act(state, action, theta)
-#
-#             total_reward += reward
-#
-#             if(done):
-#                 rewards[e] = total_reward
-#                 print(f"Episode {e + 1}: total reward -> {total_reward}")
-#                 break
-#
-#             q_table[state][action] = q_table[state][action] + alpha * (reward + gamma *  np.max(q_table[next_state]) - q_table[state][action])
-#
-#             state = next_state
-#
-#     #Test
-#     state = 0
-#     acts = np.zeros(nr_states)
-#     done = False
-#
-#     while(done != True):
-#
-#             action = choose_action(state)
-#             next_state, reward, theta, done = act(state, action, theta)
-#
-#             acts[state] = action
-#
-#             total_reward += reward
-#
-#             if(done):
-#                 break
-#
-#             state = next_state
-#
-#     #Define Index
-#     buys_idx = np.where(acts == 0)
-#     wait_idx = np.where(acts == 2)
-#     sell_idx = np.where(acts == 1)
-#
-#     #Convert Result
-#     plt.figure(figsize=(30,15))
-#     plt.plot(df.datetime_eth,prices)
-#     plt.xticks(rotation=60)
-#     plt.plot(prices[buys_idx[0]], '^', markersize=10)
-#     plt.plot(prices[sell_idx[0]], 'v', markersize=10)
-#     plt.plot(prices[wait_idx[0]], 'yo', markersize=10)
-#     plt.savefig(name + '.png')
+
+    np.random.seed(1)
+    # set of actions that the user could do
+    actions = { 'buy' : buy, 'sell': sell, 'wait' : wait}
+    actions_to_nr = { 'buy' : 0, 'sell' : 1, 'wait' : 2 }
+    nr_to_actions = { k:v for (k,v) in enumerate(actions_to_nr) }
+    nr_actions = len(actions_to_nr.keys())
+    nr_states = len(prices)
+    # q-table = reference table for our agent to select the best action based on the q-value
+    q_table = np.random.rand(nr_states, nr_actions)
+
+    #Init Agent
+    reward = 0
+    btc = 0
+    money = 100
+
+    theta = btc, money
+    # exploratory
+    eps = 0.3
+
+    n_episodes = 20
+    min_alpha = 0.02
+
+    # learning rate for Q learning
+    alphas = np.linspace(1.0, min_alpha, n_episodes)
+
+    # discount factor, used to balance immediate and future reward
+    gamma = 1.0
+
+    rewards = {}
+
+    #Training
+    for e in range(n_episodes):
+
+        total_reward = 0
+
+        state = 0
+        done = False
+        alpha = alphas[e]
+
+        while(done != True):
+
+            action = choose_action(state)
+            next_state, reward, theta, done = act(state, action, theta)
+
+            total_reward += reward
+
+            if(done):
+                rewards[e] = total_reward
+                print(f"Episode {e + 1}: total reward -> {total_reward}")
+                break
+
+            q_table[state][action] = q_table[state][action] + alpha * (reward + gamma *  np.max(q_table[next_state]) - q_table[state][action])
+
+            state = next_state
+
+    #Test
+    state = 0
+    acts = np.zeros(nr_states)
+    done = False
+
+    while(done != True):
+
+            action = choose_action(state)
+            next_state, reward, theta, done = act(state, action, theta)
+
+            acts[state] = action
+
+            total_reward += reward
+
+            if(done):
+                break
+
+            state = next_state
+
+    #Define Index
+    buys_idx = np.where(acts == 0)
+    wait_idx = np.where(acts == 2)
+    sell_idx = np.where(acts == 1)
+
+    #Convert Result
+    plt.figure(figsize=(30,15))
+    plt.plot(df.datetime_eth,prices)
+    plt.xticks(rotation=60)
+    plt.plot(prices[buys_idx[0]], '^', markersize=10)
+    plt.plot(prices[sell_idx[0]], 'v', markersize=10)
+    plt.plot(prices[wait_idx[0]], 'yo', markersize=10)
+    plt.savefig(name + '.png')
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
