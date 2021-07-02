@@ -15,7 +15,7 @@ def init_data():
     df = df_full.copy()
     df['Close']=df['closing_price']/10000
     df.pop('closing_price')
-    return df
+    return df.tail(100)
 
 #3. function buy/sell/hold
 #Function Buy
@@ -84,10 +84,11 @@ def act(state, action, theta):
 if __name__ == '__main__':
     df = init_data()
     name = 'Q-Learning-Model-ETH'
-    prices = df['Close'].head(100)
-#     prices = pd.DataFrame(df.copy().Close.values)
-#     prices = prices.head(99)
-#     prices = prices.append({0:df.tail(1).predict_hybrid_arima_lstm.values[0]}, ignore_index = True)
+    prices = pd.DataFrame(df.copy().Close.values)
+    prices = prices.head(99)
+    prices = prices.append({0:df.tail(1).predict_hybrid_arima_lstm.values[0]}, ignore_index = True)
+    prices = prices.[0]
+    print(prices)
 #     #Create Action
 
     np.random.seed(1)
