@@ -171,7 +171,7 @@ if __name__ == '__main__':
     sell_idx = np.where(acts == 1)
 
     #Convert Result
-    plt.figure(figsize=(30,15))
+    plt.figure(figsize=(40,15))
     plt.plot(df.datetime_eth,prices)
     plt.xticks(rotation=90)
     plt.plot(prices[buys_idx[0]], '^', markersize=10)
