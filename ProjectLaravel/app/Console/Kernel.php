@@ -70,23 +70,6 @@ class Kernel extends ConsoleKernel
             curl_close($ch);
         })->dailyAt('07:40');
 
-        //function Q-Learning
-        $schedule->call(function () {
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "http://112.78.4.49/api/getQLearningBTC");
-            curl_setopt($ch, CURLOPT_HEADER, 0);
-            curl_exec($ch);
-            curl_close($ch);
-
-        })->dailyAt('7:55');
-        //function Q-Learning
-        $schedule->call(function () {
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "http://112.78.4.49/api/getQLearningETH");
-            curl_setopt($ch, CURLOPT_HEADER, 0);
-            curl_exec($ch);
-            curl_close($ch);
-        })->dailyAt('8:15');
 
         //fucntion predicted price
         $schedule->call(function () {
@@ -95,7 +78,7 @@ class Kernel extends ConsoleKernel
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_exec($ch);
             curl_close($ch);
-        })->dailyAt('8:30');
+        })->dailyAt('7:55');
 
         //fucntion predicted price
         $schedule->call(function () {
@@ -105,7 +88,25 @@ class Kernel extends ConsoleKernel
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_exec($ch);
             curl_close($ch);
-        })->dailyAt('8:50');
+        })->dailyAt('8:15');
+        //function Q-Learning
+        $schedule->call(function () {
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, "http://112.78.4.49/api/getQLearningBTC");
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_exec($ch);
+            curl_close($ch);
+
+        })->dailyAt('8:30');
+        //function Q-Learning
+        $schedule->call(function () {
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, "http://112.78.4.49/api/getQLearningETH");
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_exec($ch);
+            curl_close($ch);
+        })->dailyAt('8:55');
+
 
     }
 

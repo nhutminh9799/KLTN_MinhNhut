@@ -97,7 +97,7 @@ class BitcoinController extends Controller
             'datetime_btc' => $dt
         ]);
         //Session Update closing price previous day
-        $dateNow = date('Y-m-d', strtotime(' -2 day'));
+        $dateNow = date('Y-m-d', strtotime(' -1 day'));
         $client = new Client();
         $res = $client->get('https://api.coindesk.com/v1/bpi/historical/close.json?start='.$dateNow.'&end='.$dateNow);
         $a = $res->getBody()->getContents();
@@ -119,7 +119,7 @@ class BitcoinController extends Controller
         $real_price = $a->bpi->USD->rate;
 
         $content = file_get_contents('https://www.coindesk.com/price/bitcoin');
-        preg_match('#<div class="percent-change-medium"><svg class="chevron-arrow price-down" width="22" height="11" viewBox="0 0 22 11"><path d="M21.7,1L11,11L0.3,1"></path></svg><span class="price-color down"><span class="percent-value-text">(.*)</span><span class="symbol">%</span></span></div>#', $content, $match);
+        preg_match('#<div class="price-large"><span class="symbol">$</span>(.*)</div>#', $content, $match);
         $gross = $match[1];
         $explodeResultArray = explode("<", $gross);
         $info = new \stdClass();
