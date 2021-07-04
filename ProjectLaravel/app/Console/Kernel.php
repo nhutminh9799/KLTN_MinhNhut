@@ -58,7 +58,7 @@ class Kernel extends ConsoleKernel
         //function export data to csv
         $schedule->call(function () {
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "http://112.78.4.49/api/getAllETH");
+            curl_setopt($ch, CURLOPT_URL, "http://112.78.4.49/api/getAllBTC");
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_exec($ch);
             curl_close($ch);
@@ -78,7 +78,7 @@ class Kernel extends ConsoleKernel
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_exec($ch);
             curl_close($ch);
-        })->dailyAt('7:55');
+        })->dailyAt('8:00');
 
         //fucntion predicted price
         $schedule->call(function () {
