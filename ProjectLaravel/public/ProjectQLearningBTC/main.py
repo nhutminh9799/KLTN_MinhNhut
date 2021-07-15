@@ -177,5 +177,6 @@ if __name__ == '__main__':
     plt.plot(prices[buys_idx[0]], '^', markersize=10)
     plt.plot(prices[sell_idx[0]], 'v', markersize=10)
     plt.plot(prices[wait_idx[0]], 'yo', markersize=10)
+    plt.legend(['','Mua','Bán','Giữ'],title="Chú thích")
     plt.savefig(name + '.png')
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
