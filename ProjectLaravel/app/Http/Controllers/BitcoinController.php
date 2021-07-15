@@ -118,12 +118,11 @@ class BitcoinController extends Controller
         $a = json_decode($a);
         $real_price = $a->bpi->USD->rate;
 
-        $content = file_get_contents('https://www.coindesk.com/price/bitcoin');
-        preg_match('#<div class="price-large"><span class="symbol">$</span>(.*)</div>#', $content, $match);
+        $content = file_get_contents('https://coinmarketcap.com/currencies/bitcoin/');
+        preg_match('#<div class="priceValue___11gHJ ">(.*)</div>#', $content, $match);
         $gross = $match[1];
         $explodeResultArray = explode("<", $gross);
         $info = new \stdClass();
-//        dd($real_price);
         $info->real_price = $real_price;
         $info->gross = floatval($explodeResultArray[0]);
         $JsonInfo = json_encode($info);
